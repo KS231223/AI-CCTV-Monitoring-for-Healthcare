@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+:root {
+  --salmon:    #FA8072;
+  --salmon-lt: #FDBCB4;
+  --salmon-dk: #E05A4E;
+  --orange:    #FF6B35;
+  --orange-dk: #D94F1A;
+  --cream:     #FFF8F6;
+  --white:     #FFFFFF;
+  --dark:      #1A0F0D;
+  --mid:       #3D2320;
+  --muted:     #9E7370;
+  --border:    rgba(250,128,114,0.25);
+  --card-bg:   rgba(255,255,255,0.92);
+  --sidebar-w: 220px;
+  --radius:    12px;
+  --radius-lg: 20px;
+  --shadow:    0 4px 24px rgba(250,128,114,0.15);
+  --shadow-hover: 0 8px 40px rgba(255,107,53,0.28);
+  --transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+/* ── Consistent Button System ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Primary — salmon fill, paint fills white on hover */
+.btn-primary {
+  background: var(--salmon);
+  color: var(--white);
+  border-color: var(--salmon);
+}
+.btn-primary::before { background: var(--orange-dk); opacity: 0; transform: scaleX(0); }
+.btn-primary:hover { color: var(--white); border-color: var(--orange-dk); }
+.btn-primary:hover::before { opacity: 1; transform: scaleX(1); }
+
+/* Outline — bordered salmon, salmon paint fills on hover */
+.btn-outline {
+  background: transparent;
+  color: var(--salmon-dk);
+  border-color: var(--salmon);
+}
+.btn-outline::before { background: var(--salmon); opacity: 0; }
+.btn-outline:hover { color: var(--white); }
+.btn-outline:hover::before { opacity: 1; transform: scaleX(1); }
+
+/* Ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: transparent;
+}
+.btn-ghost:hover { color: var(--salmon-dk); background: rgba(250,128,114,0.08); }
+.btn-ghost::before { display: none; }
+
+/* Orange variant */
+.btn-orange {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
+.btn-orange::before { background: var(--orange-dk); }
+.btn-orange:hover { border-color: var(--orange-dk); }
+.btn-orange:hover::before { opacity: 1; transform: scaleX(1); }
+
+/* Size mods */
+.btn-sm { padding: 7px 14px; font-size: 0.8rem; }
+.btn-lg { padding: 13px 30px; font-size: 1rem; }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--salmon-lt); border-radius: 99px; }
+
+/* ── Form Inputs ── */
+.form-input {
+  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--salmon);
+  background: var(--cream);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(250,128,114,0.1);
+}
+
+.form-input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 4px 12px rgba(255,107,53,0.2);
+  transform: scale(1.02);
+  outline: none;
+}
+
+/* ── File Upload Box ── */
+.file-upload input {
+  display: none;
+}
+
+.file-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--salmon-dk);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+  color: var(--mid);
+  box-shadow: var(--shadow);
+}
+
+.file-box:hover {
+  border-color: var(--orange);
+  box-shadow: var(--shadow-hover);
+  transform: scale(1.03);
+  color: var(--dark);
+}
+
+/* Optional icon spacing */
+.file-box span {
+  font-weight: 600;
+  color: var(--orange-dk);
+}
