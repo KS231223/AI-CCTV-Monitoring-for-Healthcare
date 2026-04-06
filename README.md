@@ -355,8 +355,8 @@ hr_fused += random.uniform(-5, 5)
 * Removal of artificial clamping once stable
 
 ---
-
 ## 🧾 Summary
+I didnt really bother submitting this for the hackathon I wanted to submit it to due to work commitments but hopefully this is a good basis for further projects and others may also benefit from it. 
 
 > This system is currently **best suited for identity tracking and recognition**,
 > while biometric signals like heart rate are still **experimental and under active development**.
