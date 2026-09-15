@@ -4,7 +4,7 @@ This project was initially for a hackathon but my friend was not free during the
 
 ---
 
-## 🚀 Features
+## Features
 
 * Real-time CCTV video processing
 * Human detection using YOLO
@@ -17,7 +17,7 @@ This project was initially for a hackathon but my friend was not free during the
 
 ---
 
-## 🧠 System Overview
+## System Overview
 
 The system processes live video frames and performs:
 
@@ -32,7 +32,7 @@ The system processes live video frames and performs:
 
 ---
 
-## 🧩 Architecture
+## Architecture
 
 ### 🔹 Core Components
 
@@ -63,7 +63,7 @@ Tracks:
 
 ---
 
-## 🔄 Processing Pipeline
+## Processing Pipeline
 
 ### Step 1: Detection
 
@@ -86,13 +86,13 @@ Tracks:
 
 Each identified person spawns:
 
-#### 🧍 Gait Thread
+#### Gait Thread
 
 * Uses pose landmarks
 * Tracks movement patterns
 * Updates frame buffer
 
-#### ❤️ rPPG Thread
+#### rPPG Thread
 
 * Extracts forehead region
 * Estimates heart rate from color variations
@@ -100,7 +100,7 @@ Each identified person spawns:
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### WebSocket Stream
 
@@ -126,7 +126,7 @@ Returns:
 
 ---
 
-## 🔌 Technologies Used
+## Technologies Used
 
 * **FastAPI** → backend framework
 * **OpenCV** → video processing
@@ -140,7 +140,7 @@ Returns:
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
 ### 1. Install Dependencies
 
@@ -176,7 +176,7 @@ uvicorn main:app --reload
 
 ---
 
-## 🎥 How It Works (Simplified)
+## How It Works (Simplified)
 
 1. Webcam feed is captured (`cv2.VideoCapture`)
 2. YOLO detects people
@@ -194,7 +194,7 @@ uvicorn main:app --reload
 
 ---
 
-## 📊 Data Tracked Per Person
+## Data Tracked Per Person
 
 * `person_id`
 * Bounding box
@@ -208,7 +208,7 @@ uvicorn main:app --reload
 
 ---
 
-## ⚠️ Notes
+## Notes
 
 * Designed for **real-time performance**, but hardware dependent
 * Threading is used for:
@@ -225,16 +225,17 @@ uvicorn main:app --reload
 
 ---
 
-## 🧩 Limitations
+## Limitations
 
 * No persistent tracking across restarts
 * Basic distance-based tracking (no DeepSORT yet)
 * Single-camera support
 * No authentication for API endpoints
+* Incredibly choppy footage due to frame-by-frame network transmission
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 * Multi-camera support
 * Better tracking (DeepSORT / ByteTrack)
@@ -243,31 +244,9 @@ uvicorn main:app --reload
 * Alerts / anomaly detection
 * Improved biometric accuracy
 
----
+ Accuracy Overview
 
-## 📜 License
-
-For educational and experimental use. Add a proper license if deploying publicly.
-
----
-
-## 👨‍💻 Author Notes
-
-* Designed as a **modular AI pipeline**
-* Focus on combining:
-
-  * Detection
-  * Identification
-  * Biometric analysis
-* Threads are used to decouple heavy processing tasks
-
----
-
-## ⚠️ Notes & Current Limitations
-
-### 🎯 Accuracy Overview
-
-* **Face Recognition (High Accuracy ✅)**
+* **Face Recognition**
 
   * The facial recognition pipeline performs **reliably and consistently**
   * Embeddings generated using FaceNet and stored in Pinecone provide:
@@ -278,9 +257,9 @@ For educational and experimental use. Add a proper license if deploying publicly
 
 ---
 
-### ❤️ rPPG (Heart Rate Estimation) – Experimental ⚠️
+### rPPG 
 
-* The rPPG module is **not fully reliable yet**
+* The rPPG module is not reliable
 * Accuracy is affected by:
 
   * Lighting conditions
@@ -303,7 +282,7 @@ For educational and experimental use. Add a proper license if deploying publicly
 
 ---
 
-### 🧪 Temporary Fix (Clamping)
+### Temporary Fix (Clamping)
 
 To keep outputs within a realistic range, a **manual clamp is currently applied**:
 
@@ -318,7 +297,7 @@ hr_fused = max(60, min(100, hr_fused))
 hr_fused += random.uniform(-5, 5)
 ```
 
-#### ⚠️ Implication
+#### Implication
 
 * The displayed heart rate is **not medically accurate**
 * It should be treated as:
@@ -327,35 +306,14 @@ hr_fused += random.uniform(-5, 5)
 
 ---
 
-### 📉 Overall System Accuracy
-
-| Component         | Status      | Notes                   |
-| ----------------- | ----------- | ----------------------- |
-| Face Recognition  | ✅ High      | Most reliable part      |
-| Person Detection  | ✅ Good      | YOLO performs well      |
-| Tracking          | ⚠️ Moderate | Simple distance-based   |
-| Gait Analysis     | ⚠️ Moderate | Depends on pose quality |
-| rPPG (Heart Rate) | ❌ Low       | Experimental + clamped  |
-
----
-
-### 🧠 Key Takeaway
+###  Key Takeaway
 
 * The system is **strong in identification (who the person is)**
 * But still **developing in physiological analysis (what their body signals are)**
 
----
-
-### 🔮 Planned Improvements for rPPG
-
-* Better ROI extraction (face/forehead stabilization)
-* Temporal filtering (bandpass filters)
-* Signal detrending
-* Use of deep learning-based rPPG models
-* Removal of artificial clamping once stable
 
 ---
-## 🧾 Summary
+##  Summary
 
 > This system is currently **best suited for identity tracking and recognition**,
 > while biometric signals like heart rate are still **experimental and under active development**.
