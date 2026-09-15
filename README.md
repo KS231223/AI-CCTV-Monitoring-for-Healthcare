@@ -1,6 +1,6 @@
 # AI CCTV Monitoring Backend (FastAPI + Computer Vision)
 
-This project implements a **real-time AI-powered CCTV backend system** for **person detection, identification, tracking, and biometric analysis** using computer vision and machine learning. I was working on this AI CCTV system during the hackathon period, but I didn’t end up submitting it because I had overlapping work commitments. I continued developing it afterwards since I found the problem interesting.
+This project was initially for a hackathon but my friend was not free during the duration of the hackathon. Thus, I developed it on my own more to learn and understand how facial embeddings worked. It implements a **real-time AI-powered CCTV backend system** for **person detection, identification, tracking, and biometric analysis** using computer vision and machine learning. I was working on this AI CCTV system during the hackathon period, but I didn’t end up submitting it because I had overlapping work commitments. I continued developing it afterwards since I found the problem interesting.
 
 ---
 
